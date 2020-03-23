@@ -82,7 +82,10 @@ public class HttpService {
 
         for (PokemonSpeciesFlavorText speciesFlavorText : speciesFlavorTexts) {
             if (speciesFlavorText.getLanguage().getName().equals("en")) {
-                return speciesFlavorText.getFlavorText();
+                return speciesFlavorText.getFlavorText()
+                        .replace("\r\n", " ")
+                        .replace("\n", " ")
+                        .replace("é", "e");
             }
         }
 

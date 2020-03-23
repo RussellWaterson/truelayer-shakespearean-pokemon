@@ -49,11 +49,21 @@ class HttpServiceTest {
     @Test
     void getPokemonDescription_successfulCall() {
 
-        String bulbasaurDescription = "Bulbasaur can be seen napping in bright sunlight.\n" +
-                "There is a seed on its back. By soaking up the sun’s rays,\n" +
+        String bulbasaurDescription = "Bulbasaur can be seen napping in bright sunlight. " +
+                "There is a seed on its back. By soaking up the sun’s rays, " +
                 "the seed grows progressively larger.";
 
         assertEquals(bulbasaurDescription, httpService.getPokemonDescription(1));
+
+    }
+
+    @Test
+    void getPokemonDescription_sanitisePokemonE() {
+
+        String porygonDescription = "This Pokemon was created using the cutting-edge science of 20 years ago, so " +
+                "many parts of it have since become obsolete.";
+
+        assertEquals(porygonDescription, httpService.getPokemonDescription(137));
 
     }
 
