@@ -1,9 +1,9 @@
 package com.russellwaterson.truelayer.shakespeareanpokemon.restservice;
 
-import org.apache.http.client.HttpResponseException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
@@ -40,8 +40,9 @@ class HttpServiceTest {
             httpService.getPokemonInfo("russell");
             fail();
         } catch (IOException e) {
-            assertEquals(HttpResponseException.class, e.getClass());
-            assertEquals("status code: 404, reason phrase: Not Found", e.getMessage());
+            fail();
+        } catch (ResponseStatusException e) {
+            assertEquals("404 NOT_FOUND \"Not Found\"", e.getMessage());
         }
 
     }

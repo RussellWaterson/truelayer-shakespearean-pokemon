@@ -1,9 +1,9 @@
 package com.russellwaterson.truelayer.shakespeareanpokemon.restservice;
 
-import org.apache.http.client.HttpResponseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,9 +38,9 @@ class PokemonControllerTest {
         try {
             controller.pokemon("russell");
             fail();
-        } catch (HttpResponseException e) {
-            assertEquals(404, e.getStatusCode());
-            assertEquals("Not Found", e.getReasonPhrase());
+        } catch (ResponseStatusException e) {
+            assertEquals(HttpStatus.NOT_FOUND, e.getStatus());
+            assertEquals("Not Found", e.getReason());
         }
 
     }
